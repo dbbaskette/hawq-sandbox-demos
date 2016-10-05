@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS PXFDEMO;
 CREATE DATABASE PXFDEMO;
-USE DATABASE PXFDEMO;
+USE PXFDEMO;
 DROP TABLE IF EXISTS customer_temp;
 CREATE EXTERNAL TABLE customer_temp
   ( c_customer_sk             bigint              --not null

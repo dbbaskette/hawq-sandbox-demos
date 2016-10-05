@@ -1,0 +1,4 @@
+create 'customer','cf1'
+create 'customer_address','cf1'
+create 'customer_demographics','cf1'
+exit

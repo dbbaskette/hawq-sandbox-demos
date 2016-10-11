@@ -1,0 +1,1072 @@
+{
+  "paragraphs": [
+    {
+      "text": "print(\"%html \u003ch3\u003e\u003ccenter\u003eWorking with PXF and External Data\u003c/h3\u003e\")\nprint(\"\u003ch4\u003e\u003ccenter\u003eHAWQ Extension Framework (PXF) is an extensible framework that allows HAWQ to query external system data. PXF includes built-in connectors for accessing data inside HDFS files, Hive tables, and HBase tables. PXF also integrates with HCatalog to query Hive tables directly.\u003c/h4\u003e\")\nprint(\"\u003ccenter\u003e\u003cimg src\u003dhttps://github.com/dbbaskette/zeppelin-notebooks/blob/master/images/pxf-arch.png?raw\u003dtrue\u0027  style\u003d\u0027width:800px;\u0027/\u003e\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:32:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703077974_-1503946455",
+      "id": "20161005-143117_844709841",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003e\u003ccenter\u003eWorking with PXF and External Data\u003c/h3\u003e\u003ch4\u003e\u003ccenter\u003eHAWQ Extension Framework (PXF) is an extensible framework that allows HAWQ to query external system data. PXF includes built-in connectors for accessing data inside HDFS files, Hive tables, and HBase tables. PXF also integrates with HCatalog to query Hive tables directly.\u003c/h4\u003e\u003ccenter\u003e\u003cimg src\u003dhttps://github.com/dbbaskette/zeppelin-notebooks/blob/master/images/pxf-arch.png?raw\u003dtrue\u0027  style\u003d\u0027width:800px;\u0027/\u003e"
+      },
+      "dateCreated": "Oct 5, 2016 2:31:17 PM",
+      "dateStarted": "Oct 5, 2016 2:31:22 PM",
+      "dateFinished": "Oct 5, 2016 2:31:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "print(\"%html \u003ch3\u003e\u003ccenter\u003eUsing PXF to Query CSV and JSON\u003c/h3\u003e\")\nprint(\"\u003ccenter\u003e\u003ctable style\u003d\u0027width:20%\u0027\u003e \u003ctr\u003e \u003cth\u003e\u003cimg src\u003d\u0027http://www.clker.com/cliparts/b/8/8/2/1369900380534177305csv_file-md.png\u0027  style\u003d\u0027width:170px;\u0027/\u003e\u003c/th\u003e\u003cth\u003e\u003cimg src\u003d\u0027http://itecsoftware.com/wp-content/uploads/2009/09/json-extension-linux-300x200.jpg\u0027  style\u003d\u0027width:300px;\u0027/\u003e\u003c/th\u003e \u003c/tr\u003e\u003c/table\u003e\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:32:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703082699_1092570630",
+      "id": "20161005-143122_1205469717",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003e\u003ccenter\u003eUsing PXF to Query CSV and JSON\u003c/h3\u003e\u003ccenter\u003e\u003ctable style\u003d\u0027width:20%\u0027\u003e \u003ctr\u003e \u003cth\u003e\u003cimg src\u003d\u0027http://www.clker.com/cliparts/b/8/8/2/1369900380534177305csv_file-md.png\u0027  style\u003d\u0027width:170px;\u0027/\u003e\u003c/th\u003e\u003cth\u003e\u003cimg src\u003d\u0027http://itecsoftware.com/wp-content/uploads/2009/09/json-extension-linux-300x200.jpg\u0027  style\u003d\u0027width:300px;\u0027/\u003e\u003c/th\u003e \u003c/tr\u003e\u003c/table\u003e"
+      },
+      "dateCreated": "Oct 5, 2016 2:31:22 PM",
+      "dateStarted": "Oct 5, 2016 2:31:48 PM",
+      "dateFinished": "Oct 5, 2016 2:31:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nDROP SCHEMA IF EXISTS text CASCADE;\nCREATE SCHEMA text;\nDROP EXTERNAL TABLE IF EXISTS  text.customer;\nCREATE EXTERNAL TABLE text.customer \n    ( c_customer_sk             bigint              \n  , c_customer_id             text              \n  , c_current_cbigbench_sk        bigint\n  , c_current_hbigbench_sk        bigint\n  , c_current_addr_sk         bigint\n  , c_first_shipto_date_sk    bigint\n  , c_first_sales_date_sk     bigint\n  , c_salutation              text\n  , c_first_name              text\n  , c_last_name               text\n  , c_preferred_cust_flag     text\n  , c_birth_day               int\n  , c_birth_month             int\n  , c_birth_year              int\n  , c_birth_country           text\n  , c_login                   text\n  , c_email_address           text\n  , c_last_review_date        text\n)\nLOCATION (\u0027pxf://localhost:51200/demo/customer?Profile\u003dHdfsTextSimple\u0027)\n      FORMAT \u0027CSV\u0027 (DELIMITER\u003d\u0027|\u0027);",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:35:12 PM",
+      "config": {
+        "colWidth": 5.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703108873_1284975728",
+      "id": "20161005-143148_408884781",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Update Count\n0\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:31:48 PM",
+      "dateStarted": "Oct 5, 2016 2:35:12 PM",
+      "dateFinished": "Oct 5, 2016 2:35:12 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nselect * from text.customer limit 8;\n\n\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:43:56 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "c_customer_sk",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "c_customer_id",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "c_customer_sk",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "c_customer_id",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703146314_-200662369",
+      "id": "20161005-143226_1115814415",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "c_customer_sk\tc_customer_id\tc_current_cbigbench_sk\tc_current_hbigbench_sk\tc_current_addr_sk\tc_first_shipto_date_sk\tc_first_sales_date_sk\tc_salutation\tc_first_name\tc_last_name\tc_preferred_cust_flag\tc_birth_day\tc_birth_month\tc_birth_year\tc_birth_country\tc_login\tc_email_address\tc_last_review_date\n69272\tAAAAAAAAAAAADYMI\t789021\t3295\t7645\t20354\t54691\tMiss\tDeborah\tWilliams\tN\t26\t2\t1989\tBERMUDA\txGhF\tDeborah.Williams@snail-mail.net\tNRVTtcQ\n69273\tAAAAAAAAAAAADYMJ\t1836298\t5637\t35173\t109364\t59280\tMiss\tTamika\tWatkins\tN\t29\t6\t1957\tITALY\t1fua51OYdQ\tTamika.Watkins@hush.ai\tF\n69274\tAAAAAAAAAAAADYMK\t1497693\t681\t31849\t105198\t29853\tDr.\tScott\tHowell\tN\t28\t9\t1984\tGHANA\tD\tScott.Howell@mail2world.com\t10GP\n69275\tAAAAAAAAAAAADYML\t1157600\t6482\t46200\t108786\t7535\tDr.\tFreddie\tMyers\tY\t25\t4\t1966\tANTIGUA AND BARBUDA\tVtw0Hbbovf1ba\tFreddie.Myers@teancum.net\ti20V4\n69276\tAAAAAAAAAAAADYMM\t1018138\t1925\t26495\t54969\t39874\tDr.\tThomas\tCarter\tY\t25\t1\t1953\tTUNISIA\t71qZuMs\tThomas.Carter@gmx.it\tW8Eer5\n69277\tAAAAAAAAAAAADYMN\t1543664\t3352\t48953\t39424\t83612\tDr.\tKathy\tKelly\tN\t29\t2\t1938\tESTONIA\tb\tKathy.Kelly@gmx.us\trVVz\n69278\tAAAAAAAAAAAADYMO\t1792887\t6306\t40555\t91257\t102353\tMr.\tDale\tAbel\tN\t4\t4\t1951\tPAKISTAN\tDaYvFFA6WzLb0\tDale.Abel@gmx.pt\thk\n69279\tAAAAAAAAAAAADYMP\t1153800\t5437\t45525\t56861\t76330\tDr.\tScott\tBarton\tN\t9\t6\t1979\tDJIBOUTI\tiT47v\tScott.Barton@gmx.co.uk\tRelw2TWV\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:32:26 PM",
+      "dateStarted": "Oct 5, 2016 2:35:18 PM",
+      "dateFinished": "Oct 5, 2016 2:35:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%file\n\nls /demo\n\n\n    ",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:42:52 PM",
+      "config": {
+        "colWidth": 5.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703142759_-1585220418",
+      "id": "20161005-143222_586237845",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "clickstream\ncustomer\ncustomer_address\ncustomer_demographics\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:32:22 PM",
+      "dateStarted": "Oct 5, 2016 2:42:42 PM",
+      "dateFinished": "Oct 5, 2016 2:42:43 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhadoop fs -tail /demo/clickstream/clickstream.json",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:44:11 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703139441_648262271",
+      "id": "20161005-143219_948018349",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "w.nasa.gov\\/mission_pages\\/station\\/expeditions\\/expedition34\\/newyear.html\", \"t\": 1356999049, \"hc\": 1356983161, \"cy\": \"Tuxtla Gutiérrez\", \"ll\": [ 16.750000, -93.116699 ] }\n{ \"a\": \"Mozilla\\/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit\\/536.26 (KHTML, like Gecko) Mobile\\/10A523\", \"c\": null, \"nk\": 1, \"tz\": \"\", \"g\": \"10sGgGU\", \"h\": \"VUas6m\", \"l\": \"nasatwitter\", \"al\": \"en-us\", \"hh\": \"go.nasa.gov\", \"r\": \"http:\\/\\/t.co\\/0NoHYs9t\", \"u\": \"http:\\/\\/www.nasa.gov\\/mission_pages\\/station\\/expeditions\\/expedition34\\/newyear.html\", \"t\": 1356999052, \"hc\": 1356983161 }\n{ \"a\": \"Mozilla\\/5.0 (Linux; U; Android 4.1.1; it-it; SAMSUNG GT-I9300\\/I9300XXDLIH Build\\/JRO03C) AppleWebKit\\/534.30 (KHTML, like Gecko) Version\\/4.0 Mobile Safari\\/534.30\", \"c\": null, \"nk\": 1, \"tz\": \"\", \"g\": \"WVDxkT\", \"h\": \"TZ1oTH\", \"l\": \"nasatwitter\", \"al\": \"it-IT, en-US\", \"hh\": \"go.nasa.gov\", \"r\": \"http:\\/\\/t.co\\/kmPTLoP8\", \"u\": \"http:\\/\\/www.nasa.gov\\/multimedia\\/imagegallery\\/image_feature_2419.html\", \"t\": 1356999056, \"hc\": 1356963704 }\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:32:19 PM",
+      "dateStarted": "Oct 5, 2016 2:44:11 PM",
+      "dateFinished": "Oct 5, 2016 2:44:16 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nDROP SCHEMA IF EXISTS json CASCADE;\nCREATE SCHEMA json;      \nCREATE EXTERNAL TABLE  json.clickstream\n( \na  text,\nc  text, \nnk  text, \ng  text,\nh  text,\nl text,\nhh text,\nr text,\nu text,\nt text,\ngr text,\n\"ll[0]\" float,\n\"ll[1]\" float,\ncy text,\ntz text,\nhc text,\nal text\n )\nLOCATION ( \u0027pxf://pxfdemo-001.c.marketing-dbaskette.internal:51200/user/hdfs/clickstream.json?PROFILE\u003dJson\u0027 )\nFORMAT \u0027CUSTOM\u0027 ( FORMATTER\u003d\u0027pxfwritable_import\u0027 );",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:44:51 PM",
+      "config": {
+        "colWidth": 5.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703782024_-609025447",
+      "id": "20161005-144302_104910139",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Update Count\n0\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:43:02 PM",
+      "dateStarted": "Oct 5, 2016 2:44:48 PM",
+      "dateFinished": "Oct 5, 2016 2:44:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nselect * from json.clickstream limit 10;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:45:12 PM",
+      "config": {
+        "colWidth": 6.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703784544_-2109915582",
+      "id": "20161005-144304_60034862",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "ERROR: remote component error (0): Couldn\u0027t resolve host \u0027pxfdemo-001.c.marketing-dbaskette.internal\u0027 (libchurl.c:878)"
+      },
+      "dateCreated": "Oct 5, 2016 2:43:04 PM",
+      "dateStarted": "Oct 5, 2016 2:45:12 PM",
+      "dateFinished": "Oct 5, 2016 2:45:22 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "print(\"%html \u003ch3\u003e\u003ccenter\u003eUsing PXF and HCatalog to Query Hive\u003c/h3\u003e\")\nprint(\"\u003ch5\u003e\u003ccenter\u003eHive tables can be queried directly through HCatalog integration with HAWQ and PXF, regardless of the underlying file storage format\u003c/h5\u003e\")\nprint(\"\u003ccenter\u003e\u003cimg src\u003d\u0027https://upload.wikimedia.org/wikipedia/commons/b/bb/Apache_Hive_logo.svg\u0027  style\u003d\u0027width:200px;\u0027/\u003e\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:45:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703838240_747507229",
+      "id": "20161005-144358_1672130692",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003e\u003ccenter\u003eUsing PXF and HCatalog to Query Hive\u003c/h3\u003e\u003ch5\u003e\u003ccenter\u003eHive tables can be queried directly through HCatalog integration with HAWQ and PXF, regardless of the underlying file storage format\u003c/h5\u003e\u003ccenter\u003e\u003cimg src\u003d\u0027https://upload.wikimedia.org/wikipedia/commons/b/bb/Apache_Hive_logo.svg\u0027  style\u003d\u0027width:200px;\u0027/\u003e"
+      },
+      "dateCreated": "Oct 5, 2016 2:43:58 PM",
+      "dateStarted": "Oct 5, 2016 2:45:35 PM",
+      "dateFinished": "Oct 5, 2016 2:45:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive\nshow tables in pxfdemo",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:52:18 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "tab_name",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "tab_name",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703841583_802926395",
+      "id": "20161005-144401_467075856",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "tab_name\ncustomer\ncustomer_address\ncustomer_demographics\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:44:01 PM",
+      "dateStarted": "Oct 5, 2016 2:51:56 PM",
+      "dateFinished": "Oct 5, 2016 2:51:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive\nselect * from pxfdemo.customer limit 8",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:52:21 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703787393_-1334646549",
+      "id": "20161005-144307_1426422771",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "customer.c_customer_sk\tcustomer.c_customer_id\tcustomer.c_current_cdemo_sk\tcustomer.c_current_hdemo_sk\tcustomer.c_current_addr_sk\tcustomer.c_first_shipto_date_sk\tcustomer.c_first_sales_date_sk\tcustomer.c_salutation\tcustomer.c_first_name\tcustomer.c_last_name\tcustomer.c_preferred_cust_flag\tcustomer.c_birth_day\tcustomer.c_birth_month\tcustomer.c_birth_year\tcustomer.c_birth_country\tcustomer.c_login\tcustomer.c_email_address\tcustomer.c_last_review_date\n0\tAAAAAAAAAAAAAAAA\t1824793\t3203\t2555\t28776\t14690\tMs.\tMarisa\tHarrington\tN\t17\t4\t1988\tUNITED ARAB EMIRATES\tRRCyuY3XfE3a\tMarisa.Harrington@lawyer.com\tgdMmGdU9\n1\tAAAAAAAAAAAAAAAB\t830976\t2600\t9191\t94658\t19931\tMiss\tBessie\tCalderon\tN\t20\t10\t1945\tMONACO\taCJb9cc\tBessie.Calderon@snail-mail.net\thLQn0LtVa\n2\tAAAAAAAAAAAAAAAC\t335540\t5527\t14091\t31783\t106195\tMiss\tBarbara\tHoover\tY\t3\t4\t1952\tGREENLAND\t59cfL9Fbpv\tBarbara.Hoover@lawyer.com\tvDVbSOCI\n3\tAAAAAAAAAAAAAAAD\t1056662\t1978\t19122\t8741\t87583\tMr.\tLanny\tBerg\tN\t2\t1\t1932\tCANADA\tTvsKkZgPt\tLanny.Berg@gmx.fr\tZxCh4LKH\n4\tAAAAAAAAAAAAAAAE\t596707\t3971\t21996\t14688\t75952\tMrs.\tGina\tFelix\tY\t18\t4\t1959\tNAURU\tt3r2t4rC\tGina.Felix@amplimail.com\tWpJjJ1\n5\tAAAAAAAAAAAAAAAF\t363428\t4888\t21272\t38182\t65826\tDr.\tJudith\tMccain\tN\t11\t10\t1936\tICELAND\tWfT\tJudith.Mccain@privacyharbor.com\tjXmMzRt8\n6\tAAAAAAAAAAAAAAAG\t1601629\t6779\t18776\t48020\t75950\tSir\tLavern\tGuzman\tN\t2\t7\t1952\tGUAM\tSD7IbZaQ\tLavern.Guzman@peacemail.com\txKpEnQ\n7\tAAAAAAAAAAAAAAAH\t260357\t2400\t30589\t20361\t42197\tDr.\tJanice\tMurray\tY\t23\t8\t1976\tLITHUANIA\tp1FXddH8rW\tJanice.Murray@mac.hush.com\txhjGNk98a\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:43:07 PM",
+      "dateStarted": "Oct 5, 2016 2:48:31 PM",
+      "dateFinished": "Oct 5, 2016 2:48:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\nselect * from hcatalog.pxfdemo.customer limit 10;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:53:15 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703835507_433936876",
+      "id": "20161005-144355_1381788096",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "c_customer_sk\tc_customer_id\tc_current_cdemo_sk\tc_current_hdemo_sk\tc_current_addr_sk\tc_first_shipto_date_sk\tc_first_sales_date_sk\tc_salutation\tc_first_name\tc_last_name\tc_preferred_cust_flag\tc_birth_day\tc_birth_month\tc_birth_year\tc_birth_country\tc_login\tc_email_address\tc_last_review_date\n0\tAAAAAAAAAAAAAAAA\t1824793\t3203\t2555\t28776\t14690\tMs.\tMarisa\tHarrington\tN\t17\t4\t1988\tUNITED ARAB EMIRATES\tRRCyuY3XfE3a\tMarisa.Harrington@lawyer.com\tgdMmGdU9\n1\tAAAAAAAAAAAAAAAB\t830976\t2600\t9191\t94658\t19931\tMiss\tBessie\tCalderon\tN\t20\t10\t1945\tMONACO\taCJb9cc\tBessie.Calderon@snail-mail.net\thLQn0LtVa\n2\tAAAAAAAAAAAAAAAC\t335540\t5527\t14091\t31783\t106195\tMiss\tBarbara\tHoover\tY\t3\t4\t1952\tGREENLAND\t59cfL9Fbpv\tBarbara.Hoover@lawyer.com\tvDVbSOCI\n3\tAAAAAAAAAAAAAAAD\t1056662\t1978\t19122\t8741\t87583\tMr.\tLanny\tBerg\tN\t2\t1\t1932\tCANADA\tTvsKkZgPt\tLanny.Berg@gmx.fr\tZxCh4LKH\n4\tAAAAAAAAAAAAAAAE\t596707\t3971\t21996\t14688\t75952\tMrs.\tGina\tFelix\tY\t18\t4\t1959\tNAURU\tt3r2t4rC\tGina.Felix@amplimail.com\tWpJjJ1\n5\tAAAAAAAAAAAAAAAF\t363428\t4888\t21272\t38182\t65826\tDr.\tJudith\tMccain\tN\t11\t10\t1936\tICELAND\tWfT\tJudith.Mccain@privacyharbor.com\tjXmMzRt8\n6\tAAAAAAAAAAAAAAAG\t1601629\t6779\t18776\t48020\t75950\tSir\tLavern\tGuzman\tN\t2\t7\t1952\tGUAM\tSD7IbZaQ\tLavern.Guzman@peacemail.com\txKpEnQ\n7\tAAAAAAAAAAAAAAAH\t260357\t2400\t30589\t20361\t42197\tDr.\tJanice\tMurray\tY\t23\t8\t1976\tLITHUANIA\tp1FXddH8rW\tJanice.Murray@mac.hush.com\txhjGNk98a\n8\tAAAAAAAAAAAAAAAI\t1519111\t1818\t23037\t39194\t62551\tMr.\tLee\tJenkins\tN\t15\t12\t1972\tTUNISIA\ts2Ef\tLee.Jenkins@hushmail.me\tj\n9\tAAAAAAAAAAAAAAAJ\t555297\t5958\t30815\t43531\t50147\tMr.\tJonathan\tParker\tY\t10\t2\t1976\tGEORGIA\tN2Qq55\tJonathan.Parker@mail.com\tvgudeV\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:43:55 PM",
+      "dateStarted": "Oct 5, 2016 2:53:15 PM",
+      "dateFinished": "Oct 5, 2016 2:53:18 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\ndrop schema IF exists hawq CASCADE;\ncreate schema hawq;\nDROP TABLE IF EXISTS hawq.customer;\nCREATE TABLE hawq.customer\n  ( c_customer_sk             bigint              \n  , c_customer_id             text              \n  , c_current_cdemo_sk        bigint\n  , c_current_hdemo_sk        bigint\n  , c_current_addr_sk         bigint\n  , c_first_shipto_date_sk    bigint\n  , c_first_sales_date_sk     bigint\n  , c_salutation              text\n  , c_first_name              text\n  , c_last_name               text\n  , c_preferred_cust_flag     text\n  , c_birth_day               int\n  , c_birth_month             int\n  , c_birth_year              int\n  , c_birth_country           text\n  , c_login                   text\n  , c_email_address           text\n  , c_last_review_date        text\n)\nwith (appendonly\u003dtrue, orientation\u003dparquet,compresstype\u003dsnappy)\nDISTRIBUTED RANDOMLY;\nDROP TABLE IF EXISTS hawq.customer_address;\nCREATE TABLE hawq.customer_address\n  ( ca_address_sk             bigint             \n  , ca_address_id             text             \n  , ca_street_number          text\n  , ca_street_name            text\n  , ca_street_type            text\n  , ca_suite_number           text\n  , ca_city                   text\n  , ca_county                 text\n  , ca_state                  text\n  , ca_zip                    text\n  , ca_country                text\n  , ca_gmt_offset             decimal(5,2)\n  , ca_location_type          text\n  )\nwith (appendonly\u003dtrue, orientation\u003dparquet,compresstype\u003dsnappy)\nDISTRIBUTED RANDOMLY;\nDROP TABLE IF EXISTS hawq.customer_demographics;\nCREATE TABLE hawq.customer_demographics\n  ( cd_demo_sk                bigint               \n  , cd_gender                 text\n  , cd_marital_status         text\n  , cd_education_status       text\n  , cd_purchase_estimate      int\n  , cd_credit_rating          text\n  , cd_dep_count              int\n  , cd_dep_employed_count     int\n  , cd_dep_college_count      int\n  )\nwith (appendonly\u003dtrue, orientation\u003dparquet,compresstype\u003dsnappy)\nDISTRIBUTED RANDOMLY;\n",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:55:15 PM",
+      "config": {
+        "colWidth": 4.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sql",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704357794_-718623044",
+      "id": "20161005-145237_946918503",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Update Count\n0\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:52:37 PM",
+      "dateStarted": "Oct 5, 2016 2:54:59 PM",
+      "dateFinished": "Oct 5, 2016 2:55:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\ninsert into hawq.customer (select * from hcatalog.pxfdemo.customer);\ninsert into hawq.customer_address (select * from hcatalog.pxfdemo.customer_address);\ninsert into hawq.customer_demographics (select * from hcatalog.pxfdemo.customer_demographics);",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:55:50 PM",
+      "config": {
+        "colWidth": 7.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704355724_509095372",
+      "id": "20161005-145235_1168411617",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Update Count\n99000\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:52:35 PM",
+      "dateStarted": "Oct 5, 2016 2:55:50 PM",
+      "dateFinished": "Oct 5, 2016 2:56:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "print(\"%html \u003ch3\u003e\u003ccenter\u003eUsing PXF and HBase\u003c/h3\u003e\")\nprint(\"\u003ch5\u003e\u003ccenter\u003eHBase tables can be queried directly through HAWQ and PXFt\u003c/h5\u003e\")\nprint(\"\u003ccenter\u003e\u003cimg src\u003d\u0027http://hbase.apache.org/images/hbase_logo_with_orca_large.png\u0027  style\u003d\u0027width: 400px;\u0027/\u003e\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 2:56:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704353586_-328887733",
+      "id": "20161005-145233_1902648444",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003e\u003ccenter\u003eUsing PXF and HBase\u003c/h3\u003e\u003ch5\u003e\u003ccenter\u003eHBase tables can be queried directly through HAWQ and PXFt\u003c/h5\u003e\u003ccenter\u003e\u003cimg src\u003d\u0027http://hbase.apache.org/images/hbase_logo_with_orca_large.png\u0027  style\u003d\u0027width: 400px;\u0027/\u003e"
+      },
+      "dateCreated": "Oct 5, 2016 2:52:33 PM",
+      "dateStarted": "Oct 5, 2016 2:56:10 PM",
+      "dateFinished": "Oct 5, 2016 2:56:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hbase\n\nlist",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:05:32 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704407992_343561400",
+      "id": "20161005-145327_1612869458",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "TABLE\nambarismoketest\ncustomer\ncustomer_address\ncustomer_address1\ncustomer_address2\ncustomer_address3\ncustomer_demographics\n7 row(s) in 3.4910 seconds\n\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:53:27 PM",
+      "dateStarted": "Oct 5, 2016 4:05:33 PM",
+      "dateFinished": "Oct 5, 2016 4:05:36 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hbase\ndescribe \u0027customer\u0027",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:05:42 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704405686_1468167111",
+      "id": "20161005-145325_1836891489",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Table customer is ENABLED\ncustomer\nCOLUMN FAMILIES DESCRIPTION\n{NAME \u003d\u003e \u0027cf1\u0027, BLOOMFILTER \u003d\u003e \u0027ROW\u0027, VERSIONS \u003d\u003e \u00271\u0027, IN_MEMORY \u003d\u003e \u0027false\u0027, KEEP_DELETED_CELLS \u003d\u003e \u0027FALSE\u0027, DATA_BLOCK_ENCODING \u003d\u003e \u0027NONE\u0027, TTL \u003d\u003e \u0027FOREVER\u0027, COMPRESSION \u003d\u003e \u0027NONE\u0027, MIN_VERSIONS \u003d\u003e \u00270\u0027, BLOCKCACHE \u003d\u003e \u0027true\u0027, BLOCKSIZE \u003d\u003e \u002765536\u0027, REPLICATION_SCOPE \u003d\u003e \u00270\u0027}\n1 row(s) in 0.3170 seconds\n\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:53:25 PM",
+      "dateStarted": "Oct 5, 2016 4:05:42 PM",
+      "dateFinished": "Oct 5, 2016 4:05:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hbase\n\nget \u0027customer\u0027, \u002710005\u0027",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:06:19 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475703779324_1782204291",
+      "id": "20161005-144259_1211597244",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "COLUMN  CELL\n cf1:c_birth_country timestamp\u003d1475707249955, value\u003dBARBADOS\n cf1:c_birth_day timestamp\u003d1475707249955, value\u003d15\n cf1:c_birth_month timestamp\u003d1475707249955, value\u003d1\n cf1:c_birth_year timestamp\u003d1475707249955, value\u003d1926\n cf1:c_current_addr_sk timestamp\u003d1475707249955, value\u003d24706\n cf1:c_current_cbigbench_sk timestamp\u003d1475707249955, value\u003d1108868\n cf1:c_current_hbigbench_sk timestamp\u003d1475707249955, value\u003d4149\n cf1:c_customer_id timestamp\u003d1475707249955, value\u003dAAAAAAAAAAAAAOUV\n cf1:c_email_address timestamp\u003d1475707249955, value\u003dJuan.Hart@gmx.hk\n cf1:c_first_name timestamp\u003d1475707249955, value\u003dJuan\n cf1:c_first_sales_date_sk timestamp\u003d1475707249955, value\u003d35865\n cf1:c_first_shipto_date_sk timestamp\u003d1475707249955, value\u003d11273\n cf1:c_last_name timestamp\u003d1475707249955, value\u003dHart\n cf1:c_last_review_date timestamp\u003d1475707249955, value\u003drjh\n cf1:c_login timestamp\u003d1475707249955, value\u003d3so\n cf1:c_preferred_cust_flag timestamp\u003d1475707249955, value\u003dN\n cf1:c_salutation timestamp\u003d1475707249955, value\u003dSir\n17 row(s) in 0.0470 seconds\n\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:42:59 PM",
+      "dateStarted": "Oct 5, 2016 4:06:19 PM",
+      "dateFinished": "Oct 5, 2016 4:06:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\nDROP SCHEMA IF EXISTS hbase CASCADE;\nCREATE SCHEMA hbase;\nDROP EXTERNAL TABLE IF EXISTS hbase.customer;\nCREATE EXTERNAL TABLE hbase.customer\n  ( \n   -- c_customer_sk              bigint    \n    recordkey \t\t\t\t\t integer\n  , \"cf1:c_customer_id\"          text              \n  , \"cf1:c_current_cbigbench_sk\" bigint\n  , \"cf1:c_current_hbigbench_sk\" bigint\n  , \"cf1:c_current_addr_sk\"      bigint\n  , \"cf1:c_first_shipto_date_sk\" bigint\n  , \"cf1:c_first_sales_date_sk\"  bigint\n  , \"cf1:c_salutation\"           text\n  , \"cf1:c_first_name\"           text\n  , \"cf1:c_last_name\"\t\t\t text\n  , \"cf1:c_preferred_cust_flag\"  text\n  , \"cf1:c_birth_day\"            int\n  , \"cf1:c_birth_month\"          int\n  , \"cf1:c_birth_year\"           int\n  , \"cf1:c_birth_country\"        text\n  , \"cf1:c_login\"                text\n  , \"cf1:c_email_address\"        text\n  , \"cf1:c_last_review_date\"     text\n)\nLOCATION (\u0027pxf://sandbox:51200/customer?Profile\u003dHBase\u0027)\nFORMAT \u0027CUSTOM\u0027 (formatter\u003d\u0027pxfwritable_import\u0027);\n\nDROP  EXTERNAL TABLE IF EXISTS hbase.customer_demographics;\nCREATE EXTERNAL TABLE hbase.customer_demographics\n  ( \n     recordkey                      bigint               \n  , \"cf1:cd_gender\"                 text\n  , \"cf1:cd_marital_status\"         text\n  , \"cf1:cd_education_status\"       text\n  , \"cf1:cd_purchase_estimate\"      text\n  , \"cf1:cd_credit_rating\"          text\n  , \"cf1:cd_dep_count\"              text\n  , \"cf1:cd_dep_employed_count\"     text\n  , \"cf1:cd_dep_college_count\"      text\n  )\nLOCATION (\u0027pxf://sandbox:51200/customer_demographics?Profile\u003dHBase\u0027)FORMAT \u0027CUSTOM\u0027 (formatter\u003d\u0027pxfwritable_import\u0027);",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:05:52 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "Update Count",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704610529_1060408253",
+      "id": "20161005-145650_2036760239",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "Update Count\n0\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:56:50 PM",
+      "dateStarted": "Oct 5, 2016 4:05:52 PM",
+      "dateFinished": "Oct 5, 2016 4:05:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\nselect * from hbase.customer limit 10;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:07:06 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704612564_-143070982",
+      "id": "20161005-145652_292243896",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "recordkey\tcf1:c_customer_id\tcf1:c_current_cbigbench_sk\tcf1:c_current_hbigbench_sk\tcf1:c_current_addr_sk\tcf1:c_first_shipto_date_sk\tcf1:c_first_sales_date_sk\tcf1:c_salutation\tcf1:c_first_name\tcf1:c_last_name\tcf1:c_preferred_cust_flag\tcf1:c_birth_day\tcf1:c_birth_month\tcf1:c_birth_year\tcf1:c_birth_country\tcf1:c_login\tcf1:c_email_address\tcf1:c_last_review_date\n10000\tAAAAAAAAAAAAAOUQ\t621082\t3822\t3021\t22907\t66301\tDr.\tMelissa\tDiehl\tN\t19\t11\t1947\tBANGLADESH\tD9djf9uR6\tMelissa.Diehl@devils.com\tuDOmWYF\n10001\tAAAAAAAAAAAAAOUR\t260366\t986\t20400\t41259\t91497\tSir\tRonald\tMendoza\tY\t21\t4\t1926\tDJIBOUTI\t3xwJBx3bAsa2\tRonald.Mendoza@12Freeukisp.co.uk\tPoLAcCse\n10002\tAAAAAAAAAAAAAOUS\t1296246\t1176\t28067\t97249\t93717\tMr.\tRodney\tDobbs\tY\t25\t5\t1927\tTUNISIA\tW\tRodney.Dobbs@gmx.pt\tpwHW4u6HzX\n10003\tAAAAAAAAAAAAAOUT\t766143\t2814\t48681\t90455\t63543\tSir\tBrian\tCarter\tN\t27\t4\t1982\tEQUATORIAL GUINEA\t4Onm\tBrian.Carter@shtrudel.biz\tV3lGYyVPr\n10004\tAAAAAAAAAAAAAOUU\t707409\t6150\t14631\t32728\t92138\tMiss\tMarilyn\tJustice\tN\t11\t3\t1930\tBRAZIL\te\tMarilyn.Justice@gmx.it\tT\n10005\tAAAAAAAAAAAAAOUV\t1108868\t4149\t24706\t11273\t35865\tSir\tJuan\tHart\tN\t15\t1\t1926\tBARBADOS\t3so\tJuan.Hart@gmx.hk\trjh\n10006\tAAAAAAAAAAAAAOUW\t469253\t5970\t37012\t58142\t71918\tDr.\tJerry\tWright\tN\t23\t5\t1977\tKENYA\t9YfH\tJerry.Wright@webmail.co.za\t8aQWE6hW\n10007\tAAAAAAAAAAAAAOUX\t1467904\t2157\t3264\t77536\t63240\tMs.\tJuanita\tMoore\tY\t4\t11\t1986\tMONTSERRAT\t9F\tJuanita.Moore@shtrudel.net\tuNPd\n10008\tAAAAAAAAAAAAAOUY\t1125893\t6740\t6176\t95591\t23284\tMs.\tLois\tCarter\tY\t28\t6\t1944\tMAYOTTE\tZyW\tLois.Carter@wildmail.com\tc\n10009\tAAAAAAAAAAAAAOUZ\t104284\t3623\t21281\t15974\t70907\tDr.\tLela\tHarris\tN\t11\t3\t1963\tGUYANA\tYHm3\tLela.Harris@shtrudel.com\t6ZFwPmJ\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:56:52 PM",
+      "dateStarted": "Oct 5, 2016 4:07:06 PM",
+      "dateFinished": "Oct 5, 2016 4:07:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nselect * from hbase.customer where recordkey\u003d10005;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:11:45 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "recordkey",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "cf1:c_customer_id",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "recordkey",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "cf1:c_customer_id",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704608290_248972823",
+      "id": "20161005-145648_1763403654",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "ERROR: remote component error (500) from \u0027192.168.9.154:51200\u0027:  type  Exception report   message   org.apache.hadoop.hbase.DoNotRetryIOException: java.lang.reflect.InvocationTargetException    description   The server encountered an internal error that prevented it from fulfilling this request.    exception   java.io.IOException: org.apache.hadoop.hbase.DoNotRetryIOException: java.lang.reflect.InvocationTargetException (libchurl.c:878)  (seg4 sandbox.hortonworks.com:40000 pid\u003d89498) (dispatcher.c:1801)\n  Detail: External table customer"
+      },
+      "dateCreated": "Oct 5, 2016 2:56:48 PM",
+      "dateStarted": "Oct 5, 2016 4:11:45 PM",
+      "dateFinished": "Oct 5, 2016 4:11:46 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "print(\"%html \u003ch3\u003e\u003ccenter\u003ePutting it All Together\u003c/h3\u003e\")\nprint(\"\u003ch4\u003e\u003ccenter\u003eAll Table types can be used in a typical SQL JOIN\u003c/h4\u003e\")\nprint(\"\u003ccenter\u003e\u003cimg src\u003d\u0027https://cwiki.apache.org/confluence/download/attachments/61318291/logo-hawq.png\u0027  style\u003d\u0027width: 400px;\u0027/\u003e\")",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 3:00:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704605039_120851439",
+      "id": "20161005-145645_1866891826",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003e\u003ccenter\u003ePutting it All Together\u003c/h3\u003e\u003ch4\u003e\u003ccenter\u003eAll Table types can be used in a typical SQL JOIN\u003c/h4\u003e\u003ccenter\u003e\u003cimg src\u003d\u0027https://cwiki.apache.org/confluence/download/attachments/61318291/logo-hawq.png\u0027  style\u003d\u0027width: 400px;\u0027/\u003e"
+      },
+      "dateCreated": "Oct 5, 2016 2:56:45 PM",
+      "dateStarted": "Oct 5, 2016 2:59:59 PM",
+      "dateFinished": "Oct 5, 2016 2:59:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hbase \n\nscan \u0027customer_demographics\u0027, {LIMIT\u003d\u003e10}",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:07:33 PM",
+      "config": {
+        "colWidth": 4.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704349313_-1949065351",
+      "id": "20161005-145229_1721331242",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "ROW  COLUMN+CELL\n 0 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 0 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d0\n 0 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d0\n 0 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d5\n 0 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dPrimary\n 0 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 0 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dU\n 0 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d6000\n 1 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 1 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d4\n 1 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d0\n 1 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d0\n 1 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dPrimary\n 1 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dM\n 1 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dS\n 1 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d3500\n 10 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 10 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d6\n 10 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d2\n 10 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d3\n 10 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003d2 yr Degree\n 10 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dM\n 10 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dM\n 10 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d500\n 100 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 100 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d1\n 100 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d7\n 100 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d7\n 100 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dAdvanced Degree\n 100 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 100 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dU\n 100 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d1000\n 1000 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 1000 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d0\n 1000 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d1\n 1000 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d5\n 1000 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dUnknown\n 1000 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dM\n 1000 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dU\n 1000 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d1000\n 10000 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dLow Risk\n 10000 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d3\n 10000 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d0\n 10000 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d3\n 10000 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dSecondary\n 10000 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 10000 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dM\n 10000 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d2500\n 100000 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 100000 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d5\n 100000 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d1\n 100000 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d3\n 100000 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dAdvanced Degree\n 100000 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 100000 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dS\n 100000 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d1500\n 1000000 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 1000000 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d1\n 1000000 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d1\n 1000000 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d0\n 1000000 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003d4 yr Degree\n 1000000 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 1000000 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dS\n 1000000 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d3500\n 1000001 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dLow Risk\n 1000001 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d4\n 1000001 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d7\n 1000001 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d3\n 1000001 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003dCollege\n 1000001 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 1000001 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dM\n 1000001 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d2000\n 1000002 column\u003dcf1:cd_credit_rating, timestamp\u003d1475707128135, value\u003dGood\n 1000002 column\u003dcf1:cd_dep_college_count, timestamp\u003d1475707128135, value\u003d0\n 1000002 column\u003dcf1:cd_dep_count, timestamp\u003d1475707128135, value\u003d8\n 1000002 column\u003dcf1:cd_dep_employed_count, timestamp\u003d1475707128135, value\u003d9\n 1000002 column\u003dcf1:cd_education_status, timestamp\u003d1475707128135, value\u003d2 yr Degree\n 1000002 column\u003dcf1:cd_gender, timestamp\u003d1475707128135, value\u003dF\n 1000002 column\u003dcf1:cd_marital_status, timestamp\u003d1475707128135, value\u003dS\n 1000002 column\u003dcf1:cd_purchase_estimate, timestamp\u003d1475707128135, value\u003d6500\n10 row(s) in 0.2170 seconds\n\n"
+      },
+      "dateCreated": "Oct 5, 2016 2:52:29 PM",
+      "dateStarted": "Oct 5, 2016 4:07:33 PM",
+      "dateFinished": "Oct 5, 2016 4:07:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nselect * from hbase.customer_demographics limit 10;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:07:38 PM",
+      "config": {
+        "colWidth": 7.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704850505_-31171994",
+      "id": "20161005-150050_2015175871",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "recordkey\tcf1:cd_gender\tcf1:cd_marital_status\tcf1:cd_education_status\tcf1:cd_purchase_estimate\tcf1:cd_credit_rating\tcf1:cd_dep_count\tcf1:cd_dep_employed_count\tcf1:cd_dep_college_count\n0\tF\tU\tPrimary\t6000\tGood\t0\t5\t0\n1\tM\tS\tPrimary\t3500\tGood\t0\t0\t4\n10\tM\tM\t2 yr Degree\t500\tGood\t2\t3\t6\n100\tF\tU\tAdvanced Degree\t1000\tGood\t7\t7\t1\n1000\tM\tU\tUnknown\t1000\tGood\t1\t5\t0\n10000\tF\tM\tSecondary\t2500\tLow Risk\t0\t3\t3\n100000\tF\tS\tAdvanced Degree\t1500\tGood\t1\t3\t5\n1000000\tF\tS\t4 yr Degree\t3500\tGood\t1\t0\t1\n1000001\tF\tM\tCollege\t2000\tLow Risk\t7\t3\t4\n1000002\tF\tS\t2 yr Degree\t6500\tGood\t8\t9\t0\n"
+      },
+      "dateCreated": "Oct 5, 2016 3:00:50 PM",
+      "dateStarted": "Oct 5, 2016 4:07:39 PM",
+      "dateFinished": "Oct 5, 2016 4:07:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\nselect c.c_first_name,c.c_last_name,ca.ca_city,ca.ca_state,cd.\"cf1:cd_gender\",cd.\"cf1:cd_marital_status\" from hawq.customer c, hcatalog.pxfdemo.customer_address ca, hbase.customer_demographics cd where c.c_customer_sk\u003dcd.recordKey and c.c_customer_sk\u003dca.ca_address_sk limit 10;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:08:23 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "c_first_name",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "c_last_name",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "c_first_name",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "c_last_name",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704853116_552492088",
+      "id": "20161005-150053_2106783689",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "c_first_name\tc_last_name\tca_city\tca_state\tcf1:cd_gender\tcf1:cd_marital_status\nMartha\tGarza\tLeesville\tMO\tF\tW\nLynette\tGooden\tUnity\tNC\tM\tS\nLola\tFry\tJohnstown\tWI\tF\tU\nJeffrey\tBeall\tNew Salem\tOH\tF\tU\nJodie\tParrish\tMarietta\tCA\tM\tM\nDominic\tCrum\tUnion City\tME\tM\tW\nJohn\tGarrett\tDover\tFL\tM\tW\nThelma\tGroves\tMagnolia\tMT\tM\tD\nDouglas\tPippin\tBuena Vista\tMS\tF\tS\nRobert\tCapps\tSaint Charles\tMO\tM\tD\n"
+      },
+      "dateCreated": "Oct 5, 2016 3:00:53 PM",
+      "dateStarted": "Oct 5, 2016 4:08:09 PM",
+      "dateFinished": "Oct 5, 2016 4:08:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%psql.sql\n\nselect c.c_first_name,c.c_last_name,ca.ca_city,ca.ca_state,jc.\"ll[0]\",jc.\"ll[0]\",cd.\"cf1:cd_gender\",cd.\"cf1:cd_marital_status\" from hawq.customer c, hcatalog.pxfdemo.customer_address ca, hbase.customer_demographics cd,json.clickstream jc where c.c_customer_sk\u003dcd.recordKey and c.c_customer_sk\u003dca.ca_address_sk and ca.ca_city\u003djc.cy and ca.ca_state\u003djc.gr limit 10;",
+      "authenticationInfo": {},
+      "dateUpdated": "Oct 5, 2016 4:08:37 PM",
+      "config": {
+        "colWidth": 11.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704847276_1473364772",
+      "id": "20161005-150047_1274148424",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "ERROR: remote component error (0): Couldn\u0027t resolve host \u0027pxfdemo-001.c.marketing-dbaskette.internal\u0027 (libchurl.c:878)"
+      },
+      "dateCreated": "Oct 5, 2016 3:00:47 PM",
+      "dateStarted": "Oct 5, 2016 4:08:37 PM",
+      "dateFinished": "Oct 5, 2016 4:08:48 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1475704797338_-971021612",
+      "id": "20161005-145957_1791160317",
+      "dateCreated": "Oct 5, 2016 2:59:57 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "HAWQ PXF Demonstration",
+  "id": "2BXJD5WF4",
+  "angularObjects": {
+    "2BUK727W5": [],
+    "2BTAPARVV": [],
+    "2BSZK95AU": [],
+    "2BV5XUP1A": [],
+    "2BUMQB6XZ": [],
+    "2BTAXYUF9": [],
+    "2BUG4NUDU": [],
+    "2BSSZT8G6": [],
+    "2BVR7DDXS": [],
+    "2BVDCHMY9": [],
+    "2BUY7C8DB": [],
+    "2BV6G61JT": [],
+    "2BSBAQPWH": [],
+    "2BS2M2F74": [],
+    "2BTHZTS7Y": [],
+    "2BU7JAVGM": [],
+    "2BUP29761": [],
+    "2BT3MG4YT": [],
+    "2BVUZGC4H": []
+  },
+  "config": {},
+  "info": {}
+}

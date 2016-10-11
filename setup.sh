@@ -10,8 +10,8 @@ do
  sudo -u hdfs sh -c "cd $currentDir/data;hadoop fs -put $dirName /demo"
 done
 sudo -u hdfs hive -f $currentDir/hive.sql
-cp -R ../2BW7K83GQ /usr/hdp/current/zeppelin-server/lib/notebook
-chown -R zeppelin: /usr/hdp/current/zeppelin-server/lib/notebook/2BW7K83GQ
+cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
+chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
 sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/lib/bin/zeppelin-daemon.sh restart"
 
 sudo -u hdfs sh -c "cd $currentDir;hbase shell ./hbase.cmds"

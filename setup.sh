@@ -12,7 +12,9 @@ done
 sudo -u hdfs hive -f $currentDir/hive.sql
 cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
 chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
-sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/lib/bin/zeppelin-daemon.sh restart"
+
+
+sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/bin/zeppelin-daemon.sh restart"
 
 sudo -u hdfs sh -c "cd $currentDir;hbase shell ./hbase.cmds"
 

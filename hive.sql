@@ -1,3 +1,4 @@
+-- noinspection SqlNoDataSourceInspectionForFile
 DROP DATABASE IF EXISTS HIVE CASCADE;
 CREATE DATABASE HIVE;
 USE HIVE;
@@ -180,8 +181,8 @@ DROP TABLE household_demographics_temp;
 
 
 -- !echo Create temporary table: income_temp;
-DROP TABLE IF EXISTS income_temp;
-CREATE EXTERNAL TABLE income_temp
+DROP TABLE IF EXISTS income_band_temp;
+CREATE EXTERNAL TABLE income_band_temp
   ( ib_income_band_sk         bigint              --not null
   , ib_lower_bound            int
   , ib_upper_bound            int

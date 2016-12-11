@@ -43,9 +43,9 @@ DROP TABLE customer_temp;
 
 
 
--- !echo Create temporary table: customerAddress_temp;
-DROP TABLE IF EXISTS customerAddress_temp;
-CREATE EXTERNAL TABLE customerAddress_temp
+-- !echo Create temporary table: customer_address_temp;
+DROP TABLE IF EXISTS customer_address_temp;
+CREATE EXTERNAL TABLE customer_address_temp
   ( ca_address_sk             bigint              --not null
   , ca_address_id             string              --not null
   , ca_street_number          string
@@ -61,24 +61,24 @@ CREATE EXTERNAL TABLE customerAddress_temp
   , ca_location_type          string
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/customerAddress'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/customer_address'
 ;
 
--- !echo Load text data into ORC table: customerAddress;
-DROP TABLE IF EXISTS customerAddress;
-CREATE TABLE customerAddress
+-- !echo Load text data into ORC table: customer_address;
+DROP TABLE IF EXISTS customer_address;
+CREATE TABLE customer_address
 STORED AS ORC
 AS
-SELECT * FROM customerAddress_temp
+SELECT * FROM customer_address_temp
 ;
 
--- !echo Drop temporary table: customerAddress_temp;
-DROP TABLE customerAddress_temp;
+-- !echo Drop temporary table: customer_address_temp;
+DROP TABLE customer_address_temp;
 
 
--- !echo Create temporary table: customerDemographics_temp;
-DROP TABLE IF EXISTS customerDemographics_temp;
-CREATE EXTERNAL TABLE customerDemographics_temp
+-- !echo Create temporary table: customer_demographics_temp;
+DROP TABLE IF EXISTS customer_demographics_temp;
+CREATE EXTERNAL TABLE customer_demographics_temp
   ( cd_demo_sk                bigint                ----not null
   , cd_gender                 string
   , cd_marital_status         string
@@ -91,24 +91,24 @@ CREATE EXTERNAL TABLE customerDemographics_temp
 
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/customerDemographics'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/customer_demographics'
 ;
 
--- !echo Load text data into ORC table: customerDemographics;
-DROP TABLE IF EXISTS customerDemographics;
-CREATE TABLE customerDemographics
+-- !echo Load text data into ORC table: customer_demographics;
+DROP TABLE IF EXISTS customer_demographics;
+CREATE TABLE customer_demographics
 STORED AS ORC
 AS
-SELECT * FROM customerDemographics_temp
+SELECT * FROM customer_demographics_temp
 ;
 
--- !echo Drop temporary table: customerDemographics_temp;
-DROP TABLE customerDemographics_temp;
+-- !echo Drop temporary table: customer_demographics_temp;
+DROP TABLE customer_demographics_temp;
 
 
 -- !echo Create temporary table: date_dim_temp;
-DROP TABLE IF EXISTS dateDim_temp;
-CREATE EXTERNAL TABLE dateDim_temp
+DROP TABLE IF EXISTS date_dim_temp;
+CREATE EXTERNAL TABLE date_dim_temp
   ( d_date_sk                 bigint              --not null
   , d_date_id                 string              --not null
   , d_date                    string
@@ -139,24 +139,24 @@ CREATE EXTERNAL TABLE dateDim_temp
   , d_current_year            string
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/date'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/date_dim'
 ;
 
--- !echo Load text data into ORC table: date;
-DROP TABLE IF EXISTS dateDim;
-CREATE TABLE dateDim
+-- !echo Load text data into ORC table: date_dim;
+DROP TABLE IF EXISTS date_dim;
+CREATE TABLE date_dim
 STORED AS ORC
 AS
-SELECT * FROM dateDim_temp
+SELECT * FROM date_dim_temp
 ;
 
 -- !echo Drop temporary table: date_temp;
-DROP TABLE dateDim_temp;
+DROP TABLE date_dim_temp;
 
 
--- !echo Create temporary table: householdDemographics_temp;
-DROP TABLE IF EXISTS householdDemographics_temp;
-CREATE EXTERNAL TABLE householdDemographics_temp
+-- !echo Create temporary table: household_demographics_temp;
+DROP TABLE IF EXISTS household_demographics_temp;
+CREATE EXTERNAL TABLE household_demographics_temp
   ( hd_demo_sk                bigint                --not null
   , hd_income_band_sk         bigint
   , hd_buy_potential          string
@@ -164,19 +164,19 @@ CREATE EXTERNAL TABLE householdDemographics_temp
   , hd_vehicle_count          int
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/householdDemographics'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/household_demographics'
 ;
 
--- !echo Load text data into ORC table: householdDemographics;
-DROP TABLE IF EXISTS householdDemographics;
-CREATE TABLE householdDemographics
+-- !echo Load text data into ORC table: household_demographics;
+DROP TABLE IF EXISTS household_demographics;
+CREATE TABLE household_demographics
 STORED AS ORC
 AS
-SELECT * FROM householdDemographics_temp
+SELECT * FROM household_demographics_temp
 ;
 
--- !echo Drop temporary table: householdDemographics_temp;
-DROP TABLE householdDemographics_temp;
+-- !echo Drop temporary table: household_demographics_temp;
+DROP TABLE household_demographics_temp;
 
 
 -- !echo Create temporary table: income_temp;
@@ -191,15 +191,15 @@ CREATE EXTERNAL TABLE income_temp
 ;
 
 -- !echo Load text data into ORC table: income;
-DROP TABLE IF EXISTS income;
-CREATE TABLE income
+DROP TABLE IF EXISTS income_band;
+CREATE TABLE income_band
 STORED AS ORC
 AS
-SELECT * FROM income_temp
+SELECT * FROM income_band_temp
 ;
 
--- !echo Drop temporary table: income_temp;
-DROP TABLE income_temp;
+-- !echo Drop temporary table: income_band_temp;
+DROP TABLE income_band_temp;
 
 
 -- !echo Create temporary table: item_temp;
@@ -306,9 +306,9 @@ SELECT * FROM reason_temp
 DROP TABLE reason_temp;
 
 
--- !echo Create temporary table: shipMode_temp;
-DROP TABLE IF EXISTS shipMode_temp;
-CREATE EXTERNAL TABLE shipMode_temp
+-- !echo Create temporary table: ship_mode_temp;
+DROP TABLE IF EXISTS ship_mode_temp;
+CREATE EXTERNAL TABLE ship_mode_temp
   ( sm_ship_mode_sk           bigint              --not null
   , sm_ship_mode_id           string              --not null
   , sm_type                   string
@@ -317,19 +317,19 @@ CREATE EXTERNAL TABLE shipMode_temp
   , sm_contract               string
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/shipMode'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/ship_mode'
 ;
 
--- !echo Load text data into ORC table: shipMode;
-DROP TABLE IF EXISTS shipMode;
-CREATE TABLE shipMode
+-- !echo Load text data into ORC table: ship_mode;
+DROP TABLE IF EXISTS ship_mode;
+CREATE TABLE ship_mode
 STORED AS ORC
 AS
-SELECT * FROM shipMode_temp
+SELECT * FROM ship_mode_temp
 ;
 
--- !echo Drop temporary table: shipMode_temp;
-DROP TABLE shipMode_temp;
+-- !echo Drop temporary table: ship_mode_temp;
+DROP TABLE ship_mode_temp;
 
 
 -- !echo Create temporary table: store_temp;
@@ -382,8 +382,8 @@ DROP TABLE store_temp;
 
 
 -- !echo Create temporary table: time_dim_temp;
-DROP TABLE IF EXISTS timeDim_temp;
-CREATE EXTERNAL TABLE timeDim_temp
+DROP TABLE IF EXISTS time_dim_temp;
+CREATE EXTERNAL TABLE time_dim_temp
   ( t_time_dim_sk                 bigint              --not null
   , t_time_dim_id                 string              --not null
   , t_time_dim                    int
@@ -400,15 +400,15 @@ CREATE EXTERNAL TABLE timeDim_temp
 ;
 
 -- !echo Load text data into ORC table: time_dim;
-DROP TABLE IF EXISTS timeDim;
-CREATE TABLE timeDim
+DROP TABLE IF EXISTS time_dim;
+CREATE TABLE time_dim
 STORED AS ORC
 AS
-SELECT * FROM timeDim_temp
+SELECT * FROM time_dim_temp
 ;
 
 -- !echo Drop temporary table: time_dim_temp;
-DROP TABLE timeDim_temp;
+DROP TABLE time_dim_temp;
 
 
 -- !echo Create temporary table: warehouse_temp;
@@ -445,9 +445,9 @@ SELECT * FROM warehouse_temp
 DROP TABLE warehouse_temp;
 
 
--- !echo Create temporary table: webSite_temp;
-DROP TABLE IF EXISTS webSite_temp;
-CREATE EXTERNAL TABLE webSite_temp
+-- !echo Create temporary table: web_site_temp;
+DROP TABLE IF EXISTS web_site_temp;
+CREATE EXTERNAL TABLE web_site_temp
   ( web_site_sk               bigint              --not null
   , web_site_id               string              --not null
   , web_rec_start_date        string
@@ -476,24 +476,24 @@ CREATE EXTERNAL TABLE webSite_temp
   , web_tax_percentage        decimal(5,2)
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/webSite'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/web_site'
 ;
 
--- !echo Load text data into ORC table: webSite;
-DROP TABLE IF EXISTS webSite;
-CREATE TABLE webSite
+-- !echo Load text data into ORC table: web_site;
+DROP TABLE IF EXISTS web_site;
+CREATE TABLE web_site
 STORED AS ORC
 AS
-SELECT * FROM webSite_temp
+SELECT * FROM web_site_temp
 ;
 
--- !echo Drop temporary table: webSite_temp;
-DROP TABLE webSite_temp;
+-- !echo Drop temporary table: web_site_temp;
+DROP TABLE web_site_temp;
 
 
--- !echo Create temporary table: webPage_temp;
-DROP TABLE IF EXISTS webPage_temp;
-CREATE EXTERNAL TABLE webPage_temp
+-- !echo Create temporary table: web_page_temp;
+DROP TABLE IF EXISTS web_page_temp;
+CREATE EXTERNAL TABLE web_page_temp
   ( wp_web_page_sk            bigint              --not null
   , wp_web_page_id            string              --not null
   , wp_rec_start_date         string
@@ -510,19 +510,19 @@ CREATE EXTERNAL TABLE webPage_temp
   , wp_max_ad_count           int
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/webPage'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/web_page'
 ;
 
--- !echo Load text data into ORC table: webPage;
-DROP TABLE IF EXISTS webPage;
-CREATE TABLE webPage
+-- !echo Load text data into ORC table: web_page;
+DROP TABLE IF EXISTS web_page;
+CREATE TABLE web_page
 STORED AS ORC
 AS
-SELECT * FROM webPage_temp
+SELECT * FROM web_page_temp
 ;
 
--- !echo Drop temporary table: webPage_temp;
-DROP TABLE webPage_temp;
+-- !echo Drop temporary table: web_page_temp;
+DROP TABLE web_page_temp;
 
 
 -- !echo Create temporary table: inventory_temp;
@@ -549,9 +549,9 @@ SELECT * FROM inventory_temp
 DROP TABLE inventory_temp;
 
 
--- !echo Create temporary table: storeSales_temp;
-DROP TABLE IF EXISTS storeSales_temp;
-CREATE EXTERNAL TABLE storeSales_temp
+-- !echo Create temporary table: store_sales_temp;
+DROP TABLE IF EXISTS store_sales_temp;
+CREATE EXTERNAL TABLE store_sales_temp
   ( ss_sold_date_sk           bigint
   , ss_sold_time_sk           bigint
   , ss_item_sk                bigint                --not null
@@ -577,24 +577,24 @@ CREATE EXTERNAL TABLE storeSales_temp
   , ss_net_profit             decimal(7,2)
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/storeSales'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/store_sales'
 ;
 
--- !echo Load text data into ORC table: storeSales;
-DROP TABLE IF EXISTS storeSales;
-CREATE TABLE storeSales
+-- !echo Load text data into ORC table: store_sales;
+DROP TABLE IF EXISTS store_sales;
+CREATE TABLE store_sales
 STORED AS ORC
 AS
-SELECT * FROM storeSales_temp
+SELECT * FROM store_sales_temp
 ;
 
--- !echo Drop temporary table: storeSales_temp;
-DROP TABLE storeSales_temp;
+-- !echo Drop temporary table: store_sales_temp;
+DROP TABLE store_sales_temp;
 
 
--- !echo Create temporary table: storeReturns_temp;
-DROP TABLE IF EXISTS storeReturns_temp;
-CREATE EXTERNAL TABLE storeReturns_temp
+-- !echo Create temporary table: store_returns_temp;
+DROP TABLE IF EXISTS store_returns_temp;
+CREATE EXTERNAL TABLE store_returns_temp
   ( sr_returned_date_sk       bigint
   , sr_return_time_sk         bigint
   , sr_item_sk                bigint                --not null
@@ -617,24 +617,24 @@ CREATE EXTERNAL TABLE storeReturns_temp
   , sr_net_loss               decimal(7,2)
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/storeReturns'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/store_returns'
 ;
 
--- !echo Load text data into ORC table: storeReturns;
-DROP TABLE IF EXISTS storeReturns;
-CREATE TABLE storeReturns
+-- !echo Load text data into ORC table: store_returns;
+DROP TABLE IF EXISTS store_returns;
+CREATE TABLE store_returns
 STORED AS ORC
 AS
-SELECT * FROM storeReturns_temp
+SELECT * FROM store_returns_temp
 ;
 
--- !echo Drop temporary table: storeReturns_temp;
-DROP TABLE storeReturns_temp;
+-- !echo Drop temporary table: store_returns_temp;
+DROP TABLE store_returns_temp;
 
 
--- !echo Create temporary table: webSales_temp;
-DROP TABLE IF EXISTS webSales_temp;
-CREATE EXTERNAL TABLE webSales_temp
+-- !echo Create temporary table: web_sales_temp;
+DROP TABLE IF EXISTS web_sales_temp;
+CREATE EXTERNAL TABLE web_sales_temp
   ( ws_sold_date_sk           bigint
   , ws_sold_time_sk           bigint
   , ws_ship_date_sk           bigint
@@ -671,24 +671,24 @@ CREATE EXTERNAL TABLE webSales_temp
   , ws_net_profit             decimal(7,2)
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/webSales'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/web_sales'
 ;
 
--- !echo Load text data into ORC table: webSales;
-DROP TABLE IF EXISTS webSales;
-CREATE TABLE webSales
+-- !echo Load text data into ORC table: web_sales;
+DROP TABLE IF EXISTS web_sales;
+CREATE TABLE web_sales
 STORED AS ORC
 AS
-SELECT * FROM webSales_temp
+SELECT * FROM web_sales_temp
 ;
 
--- !echo Drop temporary table: webSales_temp;
-DROP TABLE webSales_temp;
+-- !echo Drop temporary table: web_sales_temp;
+DROP TABLE web_sales_temp;
 
 
--- !echo Create temporary table: webReturns_temp;
-DROP TABLE IF EXISTS webReturns_temp;
-CREATE EXTERNAL TABLE webReturns_temp
+-- !echo Create temporary table: web_returns_temp;
+DROP TABLE IF EXISTS web_returns_temp;
+CREATE EXTERNAL TABLE web_returns_temp
   ( wr_returned_date_sk       bigint
   , wr_returned_time_sk       bigint
   , wr_item_sk                bigint                --not null
@@ -715,24 +715,24 @@ CREATE EXTERNAL TABLE webReturns_temp
   , wr_net_loss               decimal(7,2)
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/webReturns'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/web_returns'
 ;
 
--- !echo Load text data into ORC table: webReturns;
-DROP TABLE IF EXISTS webReturns;
-CREATE TABLE webReturns
+-- !echo Load text data into ORC table: web_returns;
+DROP TABLE IF EXISTS web_returns;
+CREATE TABLE web_returns
 STORED AS ORC
 AS
-SELECT * FROM webReturns_temp
+SELECT * FROM web_returns_temp
 ;
 
--- !echo Drop temporary table: webReturns_temp;
-DROP TABLE webReturns_temp;
+-- !echo Drop temporary table: web_returns_temp;
+DROP TABLE web_returns_temp;
 
 
 -- !echo Create temporary table: marketPrices_temp;
-DROP TABLE IF EXISTS itemMarketPrices_temp;
-CREATE EXTERNAL TABLE itemMarketPrices_temp
+DROP TABLE IF EXISTS item_marketprices_temp;
+CREATE EXTERNAL TABLE item_marketprices_temp
   ( imp_sk                  bigint                --not null
   , imp_item_sk             bigint                --not null
   , imp_competitor          string
@@ -745,21 +745,21 @@ CREATE EXTERNAL TABLE itemMarketPrices_temp
   STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/marketPrices'
 ;
 
--- !echo Load text data into ORC table: itemMarketPrices;
-DROP TABLE IF EXISTS itemMarketPrices;
-CREATE TABLE itemMarketPrices
+-- !echo Load text data into ORC table: item_marketprices;
+DROP TABLE IF EXISTS item_marketprices;
+CREATE TABLE item_marketprices
 STORED AS ORC
 AS
-SELECT * FROM itemMarketPrices_temp
+SELECT * FROM item_marketprices_temp
 ;
 
--- !echo Drop temporary table: itemMarketPrices_temp;
-DROP TABLE itemMarketPrices_temp;
+-- !echo Drop temporary table: item_marketprices_temp;
+DROP TABLE item_marketprices_temp;
 
 
 -- !echo Create temporary table: clickstreams_temp;
-DROP TABLE IF EXISTS webClickstreams_temp;
-CREATE EXTERNAL TABLE webClickstreams_temp
+DROP TABLE IF EXISTS web_clickstreams_temp;
+CREATE EXTERNAL TABLE web_clickstreams_temp
 (   wcs_click_date_sk       bigint
   , wcs_click_time_sk       bigint
   , wcs_sales_sk            bigint
@@ -772,20 +772,20 @@ CREATE EXTERNAL TABLE webClickstreams_temp
 ;
 
 -- !echo Load text data into ORC table: clickstreams;
-DROP TABLE IF EXISTS webClickstreams;
-CREATE TABLE webClickstreams
+DROP TABLE IF EXISTS web_clickstreams;
+CREATE TABLE web_clickstreams
 STORED AS ORC
 AS
-SELECT * FROM webClickstreams_temp
+SELECT * FROM web_clickstreams_temp
 ;
 
 -- !echo Drop temporary table: clickstreams_temp;
-DROP TABLE webClickstreams_temp;
+DROP TABLE web_clickstreams_temp;
 
 
 -- !echo Create temporary table: reviews_temp;
-DROP TABLE IF EXISTS productReviews_temp;
-CREATE EXTERNAL TABLE productReviews_temp
+DROP TABLE IF EXISTS product_reviews_temp;
+CREATE EXTERNAL TABLE product_reviews_temp
 (   pr_review_sk            bigint              --not null
   , pr_review_date          string
   , pr_review_time          string
@@ -800,12 +800,12 @@ CREATE EXTERNAL TABLE productReviews_temp
 ;
 
 -- !echo Load text data into ORC table: reviews;
-DROP TABLE IF EXISTS productReviews;
-CREATE TABLE productReviews
+DROP TABLE IF EXISTS product_reviews;
+CREATE TABLE product_reviews
 STORED AS ORC
 AS
-SELECT * FROM productReviews_temp
+SELECT * FROM product_reviews_temp
 ;
 
 -- !echo Drop temporary table: reviews_temp;
-DROP TABLE productReviews_temp;
+DROP TABLE product_reviews_temp;

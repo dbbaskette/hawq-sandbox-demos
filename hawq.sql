@@ -115,8 +115,8 @@ DISTRIBUTED RANDOMLY;
 
 
 
-DROP TABLE IF EXISTS hawq.income;
-CREATE  TABLE hawq.income
+DROP TABLE IF EXISTS hawq.income_band;
+CREATE  TABLE hawq.income_band
   ( ib_income_band_sk         bigint
   , ib_lower_bound            int
   , ib_upper_bound            int

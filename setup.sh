@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
+sudo -u hdfs hadoop fs -mkdir -p /hawq-sandbox-demos
 currentDir=$(pwd)
 cd data
 for file in *.gz
 do
  tar xvfz $file
  dirName=${file/.tar.gz/}
- sudo -u hdfs hadoop fs -mkdir -p /hawq-sandbox-demos/$dirName
- sudo -u hdfs sh -c "cd $currentDir/data;hadoop fs -put $dirName.dat /hawq-sandbox-demos/$dirName"
+ sudo -u hdfs sh -c "cd $currentDir/data;hadoop fs -put $dirName /hawq-sandbox-demos"
 done
-sudo -u hdfs hive -f $currentDir/hive.sql
-cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
-chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
+#sudo -u hdfs hive -f $currentDir/hive.sql
+#cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
+#chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
 
 
-sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/bin/zeppelin-daemon.sh restart"
+#sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/bin/zeppelin-daemon.sh restart"
 
-sudo -u hdfs sh -c "cd $currentDir;hbase shell ./hbase.cmds"
+#sudo -u hdfs sh -c "cd $currentDir;hbase shell ./hbase.cmds"
 
 
 hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator='|'  -Dimporttsv.columns="HBASE_ROW_KEY,cf1:cd_gender,cf1:cd_marital_status,cf1:cd_education_status,cf1:cd_purchase_estimate,cf1:cd_credit_rating,cf1:cd_dep_count,cf1:cd_dep_employed_count,cf1:cd_dep_college_count" customer_demographics /demo/customer_demographics

@@ -187,7 +187,7 @@ CREATE EXTERNAL TABLE income_temp
   , ib_upper_bound            int
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/income'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/income_band'
 ;
 
 -- !echo Load text data into ORC table: income;

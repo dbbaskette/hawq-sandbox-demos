@@ -9,11 +9,12 @@ do
  dirName=${file/.tar.gz/}
  sudo -u hdfs sh -c "cd $currentDir/data;hadoop fs -put $dirName /hawq-sandbox-demos"
 done
-#sudo -u hdfs hive -f $currentDir/hive.sql
+sudo -u hdfs hive -f $currentDir/hive.sql
+sudo -u gpadmin psql -f $currentDir/hawq.sql
+
+#XEPP CHANGES IN VM, BUT STILL REQORK THSI IMPORT
 #cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
 #chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
-
-
 #sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/bin/zeppelin-daemon.sh restart"
 
 #sudo -u hdfs sh -c "cd $currentDir;hbase shell ./hbase.cmds"

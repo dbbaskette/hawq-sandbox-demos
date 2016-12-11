@@ -743,7 +743,7 @@ CREATE EXTERNAL TABLE item_marketprices_temp
 
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/marketPrices'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/item_marketprices'
 ;
 
 -- !echo Load text data into ORC table: item_marketprices;
@@ -769,7 +769,7 @@ CREATE EXTERNAL TABLE web_clickstreams_temp
   , wcs_user_sk             bigint
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/clickstreams'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/web_clickstreams'
 ;
 
 -- !echo Load text data into ORC table: clickstreams;
@@ -797,7 +797,7 @@ CREATE EXTERNAL TABLE product_reviews_temp
   , pr_review_content       string --not null
   )
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '|'
-  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/reviews'
+  STORED AS TEXTFILE LOCATION '/hawq-sandbox-demos/product_reviews'
 ;
 
 -- !echo Load text data into ORC table: reviews;

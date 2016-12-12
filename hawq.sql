@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS hawq.customer;
 CREATE TABLE hawq.customer
   ( c_customer_sk             bigint
   , c_customer_id             text
-  , c_current_cbigbench_sk        bigint
-  , c_current_hbigbench_sk        bigint
+  , c_current_cdemo_sk        bigint
+  , c_current_hdemo_sk        bigint
   , c_current_addr_sk         bigint
   , c_first_shipto_date_sk    bigint
   , c_first_sales_date_sk     bigint
@@ -54,7 +54,7 @@ DISTRIBUTED RANDOMLY;
 
 DROP TABLE IF EXISTS hawq.customer_demographics;
 CREATE TABLE hawq.customer_demographics
-  ( cd_bigbench_sk                bigint
+  ( cd_demo_sk                bigint
   , cd_gender                 text
   , cd_marital_status         text
   , cd_education_status       text
@@ -104,7 +104,7 @@ DISTRIBUTED RANDOMLY;
 
 DROP TABLE IF EXISTS hawq.household_demographics;
 CREATE  TABLE hawq.household_demographics
-  ( hd_bigbench_sk                bigint
+  ( hd_demo_sk                bigint
   , hd_income_band_sk         bigint
   , hd_buy_potential          text
   , hd_dep_count              int
@@ -171,7 +171,7 @@ CREATE  TABLE hawq.promotion
   , p_channel_radio           text
   , p_channel_press           text
   , p_channel_event           text
-  , p_channel_bigbench            text
+  , p_channel_demo            text
   , p_channel_details         text
   , p_purpose                 text
   , p_discount_active         text
@@ -351,8 +351,8 @@ CREATE  TABLE hawq.store_sales
   , ss_sold_time_sk           bigint
   , ss_item_sk                bigint                NOT NULL
   , ss_customer_sk            bigint
-  , ss_cbigbench_sk               bigint
-  , ss_hbigbench_sk               bigint
+  , ss_cdemo_sk               bigint
+  , ss_hdemo_sk               bigint
   , ss_addr_sk                bigint
   , ss_store_sk               bigint
   , ss_promo_sk               bigint
@@ -385,8 +385,8 @@ CREATE  TABLE hawq.store_returns
   , sr_return_time_sk         bigint
   , sr_item_sk                bigint                NOT NULL
   , sr_customer_sk            bigint
-  , sr_cbigbench_sk               bigint
-  , sr_hbigbench_sk               bigint
+  , sr_cdemo_sk               bigint
+  , sr_hdemo_sk               bigint
   , sr_addr_sk                bigint
   , sr_store_sk               bigint
   , sr_reason_sk              bigint
@@ -417,12 +417,12 @@ CREATE  TABLE hawq.web_sales
   , ws_ship_date_sk           bigint
   , ws_item_sk                bigint                NOT NULL
   , ws_bill_customer_sk       bigint
-  , ws_bill_cbigbench_sk          bigint
-  , ws_bill_hbigbench_sk          bigint
+  , ws_bill_cdemo_sk          bigint
+  , ws_bill_hdemo_sk          bigint
   , ws_bill_addr_sk           bigint
   , ws_ship_customer_sk       bigint
-  , ws_ship_cbigbench_sk          bigint
-  , ws_ship_hbigbench_sk          bigint
+  , ws_ship_cdemo_sk          bigint
+  , ws_ship_hdemo_sk          bigint
   , ws_ship_addr_sk           bigint
   , ws_web_page_sk            bigint
   , ws_web_site_sk            bigint
@@ -460,12 +460,12 @@ CREATE  TABLE hawq.web_returns
   , wr_returned_time_sk       bigint
   , wr_item_sk                bigint                NOT NULL
   , wr_refunded_customer_sk   bigint
-  , wr_refunded_cbigbench_sk      bigint
-  , wr_refunded_hbigbench_sk      bigint
+  , wr_refunded_cdemo_sk      bigint
+  , wr_refunded_hdemo_sk      bigint
   , wr_refunded_addr_sk       bigint
   , wr_returning_customer_sk  bigint
-  , wr_returning_cbigbench_sk     bigint
-  , wr_returning_hbigbench_sk     bigint
+  , wr_returning_cdemo_sk     bigint
+  , wr_returning_hdemo_sk     bigint
   , wr_returning_addr_sk      bigint
   , wr_web_page_sk            bigint
   , wr_reason_sk              bigint

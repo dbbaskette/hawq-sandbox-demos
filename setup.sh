@@ -13,6 +13,11 @@ sudo -u hdfs hive -f $currentDir/hive.sql
 sudo -u gpadmin psql -p 10432 -f $currentDir/hawq.sql
 sudo -u gpadmin psql -p 10432 -f $currentDir/load.sql
 
+sudo -u gpadmin bash -c "source /usr/local/hawq/greenplum_path.sh; /usr/local/hawq/madlib/bin/madpack install -s madlib -p hawq -c gpadmin@sandbox:10432/demos"
+
+echo "Add Demo Notebook to Apache Zeppelin"
+curl http://localhost:9995/api/notebook/import -d @$currentDir/HAWQ-Demonstration.json
+
 #cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
 #chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
 #sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/bin/zeppelin-daemon.sh restart"

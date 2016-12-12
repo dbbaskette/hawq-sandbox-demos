@@ -13,7 +13,6 @@ sudo -u hdfs hive -f $currentDir/hive.sql
 sudo -u gpadmin psql -p 10432 -f $currentDir/hawq.sql
 sudo -u gpadmin psql -p 10432 -f $currentDir/load.sql
 
-#XEPP CHANGES IN VM, BUT STILL REQORK THSI IMPORT
 #cp -R ../2BXJD5WF4 /usr/hdp/current/zeppelin-server/notebook
 #chown -R zeppelin: /usr/hdp/current/zeppelin-server/notebook/2BXJD5WF4
 #sudo -u zeppelin sh -c "/usr/hdp/current/zeppelin-server/bin/zeppelin-daemon.sh restart"

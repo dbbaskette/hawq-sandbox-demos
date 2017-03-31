@@ -9,9 +9,9 @@ do
  dirName=${file/.tar.gz/}
  sudo -u hdfs sh -c "cd $currentDir/data;hadoop fs -put $dirName /hawq-sandbox-demos"
 done
-sudo -u hdfs hive -f $currentDir/hive.sql
-sudo -u gpadmin psql -p 10432 -f $currentDir/hawq.sql
-sudo -u gpadmin psql -p 10432 -f $currentDir/load.sql
+sudo -u hdfs bash -c "hive -f $currentDir/hive.sql"
+sudo -u gpadmin bash -c "cd /home/gpadmin;source /usr/local/hawq/greenplum_path.sh; psql -p 10432 -f $currentDir/hawq.sql"
+sudo -u gpadmin bash -c "cd /home/gpadmin;source /usr/local/hawq/greenplum_path.sh; psql -p 10432 -f $currentDir/load.sql"
 
 sudo -u gpadmin bash -c "source /usr/local/hawq/greenplum_path.sh; /usr/local/hawq/madlib/bin/madpack install -s madlib -p hawq -c gpadmin@sandbox:10432/demos"
 
